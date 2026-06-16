@@ -1,4 +1,7 @@
-﻿namespace Infrastructure.Views;
+﻿using Infrastructure.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Infrastructure.Views;
 
 public interface IBaseFileView
 {

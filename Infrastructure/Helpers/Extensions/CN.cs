@@ -49,6 +49,11 @@ public static class CNHelpers
       return "";
 
    }
+   public static int ToROCYear(this int val)
+      => val - 1911;
+
+   public static int ROCYearToBC(this int val)
+      => val + 1911;
 
    public static bool IsValidRocDate(this int val)
    {

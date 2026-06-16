@@ -1,4 +1,6 @@
-﻿namespace Infrastructure.Views;
+﻿using Infrastructure.Entities;
+
+namespace Infrastructure.Views;
 
 public interface IBaseRecordView
 {

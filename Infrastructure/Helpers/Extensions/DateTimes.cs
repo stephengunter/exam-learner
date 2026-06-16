@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ardalis.Specification;
+using System;
 
 namespace Infrastructure.Helpers;
 public static class DateTimeHelpers
@@ -51,6 +52,7 @@ public static class DateTimeHelpers
 
    public static DateTime ToStartDate(this DateTime date)
 		=> new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+
 	public static DateTime? ToStartDate(this string? input)
 	{
 		if (string.IsNullOrEmpty(input)) return null;
@@ -111,6 +113,27 @@ public static class DateTimeHelpers
       }
 
    }
+   public static DateTime? RocToDatetime(this int val)
+   {
+      var strVal = val.ToString();
+		if (strVal.Length == 7)
+		{
+         int year = strVal.Substring(0, 3).ToInt();
+         int month = strVal.Substring(3, 2).ToInt();
+         int day = strVal.Substring(5, 2).ToInt();
+
+         return new DateTime(year + 1911, month, day);
+      }
+      if (strVal.Length == 6)
+      {
+         int year = strVal.Substring(0, 2).ToInt();
+         int month = strVal.Substring(2, 2).ToInt();
+         int day = strVal.Substring(4, 2).ToInt();
+
+         return new DateTime(year + 1911, month, day);
+      }
+		return null;      
+   }
    public static DateTime ToDatetime(this int val)
 	{
 		var strVal = val.ToString();
@@ -160,10 +183,24 @@ public static class DateTimeHelpers
 		return hour + minute + second + mileSecond;
 
 	}
-	public static int ToDateNumber(this DateTime input) => Convert.ToInt32(GetDateString(input.Date));
+   public static DateTime? ToNullableDateTime(this object dbValue)
+   {
+      if (dbValue == DBNull.Value || dbValue == null) return null;
+      if (DateTime.TryParse(dbValue.ToString(), out DateTime result)) return result;
+
+      return null;
+   }
+   public static int ToDateNumber(this DateTime input) => Convert.ToInt32(GetDateString(input.Date));
 	public static int ToTimeNumber(this DateTime input) => Convert.ToInt32(GetTimeString(input));
 	public static string ToDateString(this DateTime input) => input.ToString("yyyy-MM-dd");
-	public static string ToDateString(this DateTime? input) => input.HasValue ? input.Value.ToDateString() : string.Empty;
+	public static string ToRocDateString(this DateTime input, bool cn = true)
+	{
+		int year = input.Year - 1911;
+		if (cn) return $"{year}年{input.Month}月{input.Day}日";
+		return $"{year}-{input.Month}-{input.Day}";
+
+   }
+   public static string ToDateString(this DateTime? input) => input.HasValue ? input.Value.ToDateString() : string.Empty;
 	public static string ToDateTimeString(this DateTime input) => input.ToString("yyyy-MM-dd H:mm:ss");
 	public static string ToDateTimeString(this DateTime? input) => input.HasValue ? input.Value.ToDateTimeString() : string.Empty;
 

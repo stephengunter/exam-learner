@@ -1,10 +1,18 @@
 ﻿using Infrastructure.Consts;
-using System;
 
 namespace Infrastructure.Helpers;
 public static class FilesHelpers
 {
-   public static string GetUniqueFileName(string folderPath, string fileName)
+    public static byte[] ReadFile(string fileName)
+    {
+        FileStream f = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        int size = (int)f.Length;
+        byte[] data = new byte[size];
+        size = f.Read(data, 0, size);
+        f.Close();
+        return data;
+    }
+    public static string GetUniqueFileName(string folderPath, string fileName)
    {
       string extension = Path.GetExtension(fileName);
       string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);

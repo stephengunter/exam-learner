@@ -1,4 +1,7 @@
-﻿namespace Infrastructure.Views;
+﻿using Infrastructure.Entities;
+
+namespace Infrastructure.Views;
+
 
 public interface IBaseCategoryView<T> where T : IBaseCategoryView<T>
 {
@@ -6,7 +9,7 @@ public interface IBaseCategoryView<T> where T : IBaseCategoryView<T>
 
    int? ParentId { get; set; }
 
-   bool IsRootItem { get; set; }
+   bool IsRootItem { get; }
 
    ICollection<T>? SubItems { get; set; }
 

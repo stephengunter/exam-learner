@@ -1,4 +1,6 @@
-﻿namespace Infrastructure.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Infrastructure.Entities;
 
 public interface IBaseCategory<T> where T : IBaseCategory<T>
 {

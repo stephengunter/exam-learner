@@ -2,8 +2,6 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Infrastructure.Services;
-
 public interface ICryptoService
 {
    string Encrypt(string plainText);

@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Entities;
+using System.Data;
 
 namespace Infrastructure.Helpers;
 

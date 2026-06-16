@@ -1,3 +1,4 @@
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Helpers;
 

@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Models.Identity;
+using ApplicationCore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection;
@@ -39,7 +40,10 @@ public class DefaultContext : IdentityDbContext<User, Role, string,
    public DbSet<OAuth> OAuth => Set<OAuth>();
    public DbSet<AuthToken> AuthTokens => Set<AuthToken>();
    #endregion
-   
+   public DbSet<Book> Books => Set<Book>();
+   public DbSet<Article> Articles => Set<Article>();
+   public DbSet<ArticleItem> ArticleItems => Set<ArticleItem>();
+
 
    public override int SaveChanges() => SaveChangesAsync().GetAwaiter().GetResult();
 

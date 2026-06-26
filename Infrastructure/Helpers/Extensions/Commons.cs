@@ -8,6 +8,7 @@ public static class CommonHelpers
 
 		return value;
 	}
+   public static int ToInt(this int? val) => val.HasValue ? val.Value : 0;
    public static double ToDouble(this string str)
    {
       double value;

@@ -17,9 +17,9 @@ public static class ClaimsHelpers
 
    public static string Id(this ClaimsPrincipal user)
    {
-      var claim = user.FindFirst(JwtClaimIdentifiers.Sub);
+      var claim = user.FindFirst(JwtClaimIdentifiers.Id);
       if (claim != null) return claim.Value;
-      return user.Claims.Find(JwtClaimIdentifiers.Sub)?.Value ?? string.Empty;
+      return user.Claims.Find(JwtClaimIdentifiers.Id)?.Value ?? string.Empty;
    }
 
    public static IEnumerable<string> Roles(this ClaimsPrincipal user)

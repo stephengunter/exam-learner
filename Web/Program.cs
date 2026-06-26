@@ -112,17 +112,17 @@ try
       if (Configuration[$"{SettingsKeys.Developing}:SeedDatabase"].ToBoolean())
       {
          // Seed Database
-         //using (var scope = app.Services.CreateScope())
-         //{
-         //   try
-         //   {
-         //      await SeedData.EnsureSeedData(scope.ServiceProvider, Configuration);
-         //   }
-         //   catch (Exception ex)
-         //   {
-         //      Log.Fatal(ex, "SeedData Error");
-         //   }
-         //}
+         using (var scope = app.Services.CreateScope())
+         {
+            try
+            {
+               await SeedData.EnsureSeedData(scope.ServiceProvider, Configuration);
+            }
+            catch (Exception ex)
+            {
+               Log.Fatal(ex, "SeedData Error");
+            }
+         }
       }
       app.UseSwagger();
       app.UseSwaggerUI();

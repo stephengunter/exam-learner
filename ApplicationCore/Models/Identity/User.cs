@@ -1,4 +1,5 @@
-﻿using Infrastructure.Entities;
+﻿using ApplicationCore.Models.Auth;
+using Infrastructure.Entities;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ public class User : IdentityUser, IAggregateRoot, IBaseRecord
    public DateTime? LastUpdated { get; set; }
    public string? UpdatedBy { get; set; }
    public bool Active { get; set; }
+
+   public virtual RefreshToken? RefreshToken { get; set; }
    public virtual Profiles? Profiles { get; set; }
 
    public virtual ICollection<UserRole>? UserRoles { get; set; }
